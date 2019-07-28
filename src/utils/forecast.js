@@ -10,7 +10,9 @@ const forecast = (latitude, longitude, callback) =>{
         } else {
             const {currently: {temperature, precipProbability}} = body;
             const summary = body.daily.data[0].summary;
-            const message = summary + ' Actualmente hay ' + temperature + 'ºC afuera. Existe un ' + precipProbability*100 + '% de probabilidad de lluvia.';
+            const minTemp = body.daily.data[0].temperatureMin;
+            const maxTemp = body.daily.data[0].temperatureMax;
+            const message = summary + ' Actualmente hay ' + temperature + 'ºC afuera, la temperatura mínima será de ' + minTemp + ' y la temperatura máxima será de ' + maxTemp + '. Existe un ' + precipProbability*100 + '% de probabilidad de lluvia.';
             //console.log(message);
             callback(undefined, message)
         }
